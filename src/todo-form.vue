@@ -19,4 +19,4 @@
 		<label for="newTodo">New Todo</label>
 		<input type="text" id="newTodo" v-model="newTodo" />
 	</form>
-</template
+</template>

@@ -1,20 +1,29 @@
 import Vue from 'vue';
+import { configureStore } from '@reduxjs/toolkit';
+import { connect, mapState, mapActions } from 'redux-vuex';
+
+import { actions, reducer } from './store'
 import todosView from './todo-app.vue';
-import { todos, addTodo, completeTodo, deleteTodo } from './store';
+
+const store = configureStore({
+	reducer: {
+		todos: reducer
+	}
+});
+
+connect({
+	Vue,
+	store,
+	actions
+});
 
 new Vue({
 	components: {
 		todosView
 	},
-	data: {
-		todos
-	},
+	data: mapState('todos'),
 	el: '#app',
-	methods: {
-		addTodo,
-		completeTodo,
-		deleteTodo
-	},
+	methods: mapActions('addTodo', 'completeTodo', 'deleteTodo'),
 	template: `
 		<todos-view
 			v-bind:todos="todos"

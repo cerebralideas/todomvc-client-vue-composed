@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/cerebralideas/todomvc-client-vue#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.0.4",
+    "redux-vuex": "^0.3.2",
     "uuid": "^3.3.3",
     "vue": "^2.6.10"
   },

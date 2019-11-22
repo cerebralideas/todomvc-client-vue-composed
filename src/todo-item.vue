@@ -19,7 +19,7 @@
 		<label>
 			<input
 				type="checkbox"
-				v-model="todo.completed"
+				v-bind:checked="todo.completed"
 				@change="completeTodo(todo.id)" />
 			{{ todo.title }}
 			<button @click="deleteTodo(todo.id)">X</button>
