@@ -1,5 +1,5 @@
 <script>
-export default {
+	export default {
 		data: function () {
 			return {
 				newTodo: ''
@@ -7,8 +7,8 @@ export default {
 		},
 		methods: {
 			submitTodo: function (todo) {
-				console.log('child ' + todo);
 				this.$emit('submit-todo', todo);
+				this.newTodo = '';
 			}
 		}
 	};

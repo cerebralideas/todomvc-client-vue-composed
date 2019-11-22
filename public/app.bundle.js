@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_form_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo-form.vue */ \"./src/todo-form.vue\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  components: {\n    todoForm: _todo_form_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n  },\n  props: {\n    todos: Array\n  }\n});\n\n//# sourceURL=webpack:///./src/todo-app.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_form_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo-form.vue */ \"./src/todo-form.vue\");\n/* harmony import */ var _todo_item_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo-item.vue */ \"./src/todo-item.vue\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  components: {\n    todoForm: _todo_form_vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n    todoItem: _todo_item_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  props: {\n    todos: Array\n  }\n});\n\n//# sourceURL=webpack:///./src/todo-app.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -106,7 +106,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _tod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: function () {\n    return {\n      newTodo: ''\n    };\n  },\n  methods: {\n    submitTodo: function (todo) {\n      console.log('child ' + todo);\n      this.$emit('submit-todo', todo);\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/todo-form.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: function () {\n    return {\n      newTodo: ''\n    };\n  },\n  methods: {\n    submitTodo: function (todo) {\n      this.$emit('submit-todo', todo);\n      this.newTodo = '';\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/todo-form.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/todo-item.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/todo-item.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  props: {\n    todo: Object\n  },\n  methods: {\n    completeTodo: function (todoId) {\n      this.$emit('complete-todo', todoId);\n    },\n    deleteTodo: function (todoId) {\n      this.$emit('delete-todo', todoId);\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/todo-item.vue?./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -143,6 +155,39 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !=
 
 /***/ }),
 
+/***/ "./node_modules/uuid/lib/bytesToUuid.js":
+/*!**********************************************!*\
+  !*** ./node_modules/uuid/lib/bytesToUuid.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("/**\n * Convert array of 16 byte values to UUID string format of the form:\n * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX\n */\nvar byteToHex = [];\n\nfor (var i = 0; i < 256; ++i) {\n  byteToHex[i] = (i + 0x100).toString(16).substr(1);\n}\n\nfunction bytesToUuid(buf, offset) {\n  var i = offset || 0;\n  var bth = byteToHex; // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4\n\n  return [bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]]].join('');\n}\n\nmodule.exports = bytesToUuid;\n\n//# sourceURL=webpack:///./node_modules/uuid/lib/bytesToUuid.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/lib/rng-browser.js":
+/*!**********************************************!*\
+  !*** ./node_modules/uuid/lib/rng-browser.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// Unique ID creation requires a high quality random # generator.  In the\n// browser this is a little complicated due to unknown quality of Math.random()\n// and inconsistent support for the `crypto` API.  We do the best we can via\n// feature-detection\n// getRandomValues needs to be invoked in a context where \"this\" is a Crypto\n// implementation. Also, find the complete implementation of crypto on IE11.\nvar getRandomValues = typeof crypto != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto);\n\nif (getRandomValues) {\n  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto\n  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef\n\n  module.exports = function whatwgRNG() {\n    getRandomValues(rnds8);\n    return rnds8;\n  };\n} else {\n  // Math.random()-based (RNG)\n  //\n  // If all else fails, use Math.random().  It's fast, but is of unspecified\n  // quality.\n  var rnds = new Array(16);\n\n  module.exports = function mathRNG() {\n    for (var i = 0, r; i < 16; i++) {\n      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;\n      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;\n    }\n\n    return rnds;\n  };\n}\n\n//# sourceURL=webpack:///./node_modules/uuid/lib/rng-browser.js?");
+
+/***/ }),
+
+/***/ "./node_modules/uuid/v4.js":
+/*!*********************************!*\
+  !*** ./node_modules/uuid/v4.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var rng = __webpack_require__(/*! ./lib/rng */ \"./node_modules/uuid/lib/rng-browser.js\");\n\nvar bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ \"./node_modules/uuid/lib/bytesToUuid.js\");\n\nfunction v4(options, buf, offset) {\n  var i = buf && offset || 0;\n\n  if (typeof options == 'string') {\n    buf = options === 'binary' ? new Array(16) : null;\n    options = null;\n  }\n\n  options = options || {};\n  var rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`\n\n  rnds[6] = rnds[6] & 0x0f | 0x40;\n  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided\n\n  if (buf) {\n    for (var ii = 0; ii < 16; ++ii) {\n      buf[i + ii] = rnds[ii];\n    }\n  }\n\n  return buf || bytesToUuid(rnds);\n}\n\nmodule.exports = v4;\n\n//# sourceURL=webpack:///./node_modules/uuid/v4.js?");
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/todo-app.vue?vue&type=template&id=829e401a&":
 /*!***************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/todo-app.vue?vue&type=template&id=829e401a& ***!
@@ -151,7 +196,7 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = typeof global !=
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\"todo-form\", _vm._g({}, _vm.$listeners)),\n      _vm._v(\" \"),\n      _c(\n        \"ul\",\n        _vm._l(_vm.todos, function(todo) {\n          return _c(\"li\", { key: todo }, [_vm._v(_vm._s(todo))])\n        }),\n        0\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/todo-app.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    [\n      _c(\"todo-form\", _vm._g({}, _vm.$listeners)),\n      _vm._v(\" \"),\n      _c(\n        \"ul\",\n        _vm._l(_vm.todos, function(todo) {\n          return _c(\n            \"todo-item\",\n            _vm._g({ key: todo.id, attrs: { todo: todo } }, _vm.$listeners)\n          )\n        }),\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/todo-app.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -164,6 +209,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"form\",\n    {\n      attrs: { name: \"todoForm\" },\n      on: {\n        submit: function($event) {\n          $event.preventDefault()\n          return _vm.submitTodo(_vm.newTodo)\n        }\n      }\n    },\n    [\n      _c(\"label\", { attrs: { for: \"newTodo\" } }, [_vm._v(\"New Todo\")]),\n      _vm._v(\" \"),\n      _c(\"input\", {\n        directives: [\n          {\n            name: \"model\",\n            rawName: \"v-model\",\n            value: _vm.newTodo,\n            expression: \"newTodo\"\n          }\n        ],\n        attrs: { type: \"text\", id: \"newTodo\" },\n        domProps: { value: _vm.newTodo },\n        on: {\n          input: function($event) {\n            if ($event.target.composing) {\n              return\n            }\n            _vm.newTodo = $event.target.value\n          }\n        }\n      })\n    ]\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/todo-form.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/todo-item.vue?vue&type=template&id=1a9f37b1&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/todo-item.vue?vue&type=template&id=1a9f37b1& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\"li\", [\n    _c(\"label\", [\n      _c(\"input\", {\n        directives: [\n          {\n            name: \"model\",\n            rawName: \"v-model\",\n            value: _vm.todo.completed,\n            expression: \"todo.completed\"\n          }\n        ],\n        attrs: { type: \"checkbox\" },\n        domProps: {\n          checked: Array.isArray(_vm.todo.completed)\n            ? _vm._i(_vm.todo.completed, null) > -1\n            : _vm.todo.completed\n        },\n        on: {\n          change: [\n            function($event) {\n              var $$a = _vm.todo.completed,\n                $$el = $event.target,\n                $$c = $$el.checked ? true : false\n              if (Array.isArray($$a)) {\n                var $$v = null,\n                  $$i = _vm._i($$a, $$v)\n                if ($$el.checked) {\n                  $$i < 0 && _vm.$set(_vm.todo, \"completed\", $$a.concat([$$v]))\n                } else {\n                  $$i > -1 &&\n                    _vm.$set(\n                      _vm.todo,\n                      \"completed\",\n                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))\n                    )\n                }\n              } else {\n                _vm.$set(_vm.todo, \"completed\", $$c)\n              }\n            },\n            function($event) {\n              return _vm.completeTodo(_vm.todo.id)\n            }\n          ]\n        }\n      }),\n      _vm._v(\"\\n\\t\\t\" + _vm._s(_vm.todo.title) + \"\\n\\t\\t\"),\n      _c(\n        \"button\",\n        {\n          on: {\n            click: function($event) {\n              return _vm.deleteTodo(_vm.todo.id)\n            }\n          }\n        },\n        [_vm._v(\"X\")]\n      )\n    ])\n  ])\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/todo-item.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
 
 /***/ }),
 
@@ -210,7 +267,19 @@ eval("var g; // This works in non-strict mode\n\ng = function () {\n  return thi
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _todo_app_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo-app.vue */ \"./src/todo-app.vue\");\n\n\nconst todos = ['Hello, World!'];\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  components: {\n    'todos-view': _todo_app_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: {\n    todos\n  },\n  el: '#app',\n  methods: {\n    addTodo: function (todo) {\n      console.log(todo);\n      todos.push(todo);\n    }\n  },\n  template: `\n\t\t<todos-view\n\t\t\tv-bind:todos=\"todos\"\n\t\t\tv-on:submit-todo=\"addTodo\">\n\t\t</todos-view>\n\t`\n});\n\n//# sourceURL=webpack:///./src/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.esm.js\");\n/* harmony import */ var _todo_app_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo-app.vue */ \"./src/todo-app.vue\");\n/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store */ \"./src/store.js\");\n\n\n\nnew vue__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n  components: {\n    todosView: _todo_app_vue__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n  },\n  data: {\n    todos: _store__WEBPACK_IMPORTED_MODULE_2__[\"todos\"]\n  },\n  el: '#app',\n  methods: {\n    addTodo: _store__WEBPACK_IMPORTED_MODULE_2__[\"addTodo\"],\n    completeTodo: _store__WEBPACK_IMPORTED_MODULE_2__[\"completeTodo\"],\n    deleteTodo: _store__WEBPACK_IMPORTED_MODULE_2__[\"deleteTodo\"]\n  },\n  template: `\n\t\t<todos-view\n\t\t\tv-bind:todos=\"todos\"\n\t\t\tv-on:submit-todo=\"addTodo\"\n\t\t\tv-on:complete-todo=\"completeTodo\"\n\t\t\tv-on:delete-todo=\"deleteTodo\">\n\t\t</todos-view>\n\t`\n});\n\n//# sourceURL=webpack:///./src/app.js?");
+
+/***/ }),
+
+/***/ "./src/store.js":
+/*!**********************!*\
+  !*** ./src/store.js ***!
+  \**********************/
+/*! exports provided: todos, addTodo, completeTodo, deleteTodo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"todos\", function() { return todos; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"addTodo\", function() { return addTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"completeTodo\", function() { return completeTodo; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"deleteTodo\", function() { return deleteTodo; });\n/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid/v4 */ \"./node_modules/uuid/v4.js\");\n/* harmony import */ var uuid_v4__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(uuid_v4__WEBPACK_IMPORTED_MODULE_0__);\n\nlet todos = [{\n  id: 'f9c94d35-a6d6-4301-9596-76a5b9e2a484',\n  title: 'Hello, World!',\n  completed: 'true'\n}];\nconst addTodo = function (title) {\n  let todo = {\n    title,\n    id: uuid_v4__WEBPACK_IMPORTED_MODULE_0___default()(),\n    completed: false\n  };\n  todos.push(todo);\n};\nconst completeTodo = function (id) {\n  for (let i = 0; i < todos.length; i++) {\n    if (todos[i].id === id) {\n      todos[i].completed = !todos[i].completed;\n    }\n  }\n};\nconst deleteTodo = function (id) {\n  for (let i = 0; i < todos.length; i++) {\n    if (todos[i].id === id) {\n      todos.splice(i, 1);\n    }\n  }\n};\n\n//# sourceURL=webpack:///./src/store.js?");
 
 /***/ }),
 
@@ -283,6 +352,42 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_form_vue_vue_type_template_id_1ea8ee3c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../node_modules/vue-loader/lib??vue-loader-options!./todo-form.vue?vue&type=template&id=1ea8ee3c& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/todo-form.vue?vue&type=template&id=1ea8ee3c&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_form_vue_vue_type_template_id_1ea8ee3c___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_form_vue_vue_type_template_id_1ea8ee3c___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/todo-form.vue?");
+
+/***/ }),
+
+/***/ "./src/todo-item.vue":
+/*!***************************!*\
+  !*** ./src/todo-item.vue ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _todo_item_vue_vue_type_template_id_1a9f37b1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo-item.vue?vue&type=template&id=1a9f37b1& */ \"./src/todo-item.vue?vue&type=template&id=1a9f37b1&\");\n/* harmony import */ var _todo_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todo-item.vue?vue&type=script&lang=js& */ \"./src/todo-item.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _todo_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _todo_item_vue_vue_type_template_id_1a9f37b1___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _todo_item_vue_vue_type_template_id_1a9f37b1___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"src/todo-item.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);\n\n//# sourceURL=webpack:///./src/todo-item.vue?");
+
+/***/ }),
+
+/***/ "./src/todo-item.vue?vue&type=script&lang=js&":
+/*!****************************************************!*\
+  !*** ./src/todo-item.vue?vue&type=script&lang=js& ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/babel-loader/lib!../node_modules/vue-loader/lib??vue-loader-options!./todo-item.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/index.js?!./src/todo-item.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_item_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); \n\n//# sourceURL=webpack:///./src/todo-item.vue?");
+
+/***/ }),
+
+/***/ "./src/todo-item.vue?vue&type=template&id=1a9f37b1&":
+/*!**********************************************************!*\
+  !*** ./src/todo-item.vue?vue&type=template&id=1a9f37b1& ***!
+  \**********************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_item_vue_vue_type_template_id_1a9f37b1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../node_modules/vue-loader/lib??vue-loader-options!./todo-item.vue?vue&type=template&id=1a9f37b1& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/todo-item.vue?vue&type=template&id=1a9f37b1&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_item_vue_vue_type_template_id_1a9f37b1___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_todo_item_vue_vue_type_template_id_1a9f37b1___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n\n\n//# sourceURL=webpack:///./src/todo-item.vue?");
 
 /***/ })
 

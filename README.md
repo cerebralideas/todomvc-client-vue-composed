@@ -11,8 +11,8 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 ## Progress
 
 - [ ] Add Redux Toolkit for state management
-- [ ] Add complete and delete functionality to todos
-- [x] Get a super-basic todo list using `.vue` components working with plain Vue ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Add a basic "store" with complete and delete functionality to todos ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Get a super-basic todo list using `.vue` components working with plain Vue ([#fd23440](https://github.com/cerebralideas/todomvc-client-vue/tree/fd23440cdc833741d64dc2e134aaee15c5ec32ae))
 
 ## Up and Running
 

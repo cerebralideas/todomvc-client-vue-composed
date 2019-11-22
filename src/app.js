@@ -1,28 +1,26 @@
 import Vue from 'vue';
 import todosView from './todo-app.vue';
-
-const todos = [
-	'Hello, World!'
-];
+import { todos, addTodo, completeTodo, deleteTodo } from './store';
 
 new Vue({
 	components: {
-		'todos-view': todosView
+		todosView
 	},
 	data: {
 		todos
 	},
 	el: '#app',
 	methods: {
-		addTodo: function (todo) {
-			console.log(todo);
-			todos.push(todo);
-		}
+		addTodo,
+		completeTodo,
+		deleteTodo
 	},
 	template: `
 		<todos-view
 			v-bind:todos="todos"
-			v-on:submit-todo="addTodo">
+			v-on:submit-todo="addTodo"
+			v-on:complete-todo="completeTodo"
+			v-on:delete-todo="deleteTodo">
 		</todos-view>
 	`
 });

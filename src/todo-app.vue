@@ -1,9 +1,11 @@
 <script>
 	import todoForm from './todo-form.vue';
+	import todoItem from './todo-item.vue';
 
 	export default {
 		components: {
-			todoForm
+			todoForm,
+			todoItem
 		},
 		props: {
 			todos: Array
@@ -15,7 +17,12 @@
 	<div>
 		<todo-form v-on="$listeners"></todo-form>
 		<ul>
-			<li v-for="todo in todos" :key="todo">{{ todo }}</li>
+			<todo-item
+				v-for="todo in todos"
+				v-bind:todo="todo"
+				v-on="$listeners"
+				:key="todo.id">
+			</todo-item>
 		</ul>
 	</div>
 </template>

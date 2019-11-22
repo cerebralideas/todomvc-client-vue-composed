@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/cerebralideas/todomvc-client-vue#readme",
   "dependencies": {
+    "uuid": "^3.3.3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
