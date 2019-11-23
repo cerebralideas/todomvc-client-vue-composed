@@ -30,5 +30,5 @@ const todosSlice = createSlice({
 	}
 });
 
-export const actions = todosSlice.actions;
-export const reducer = todosSlice.reducer;
+export const todosActions = todosSlice.actions;
+export const todosReducer = todosSlice.reducer;

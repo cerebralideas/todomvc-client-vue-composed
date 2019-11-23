@@ -14,8 +14,8 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 - [ ] Feature: Add official TodoMVC look and feel through official packages
 - [ ] Feature: Add data persistence using LocalStorage
 - [ ] Feature: Add "complete all" and "clear completed" functionality
-- [ ] Feature: Add client-side routing
-- [x] Tech: Switch to Redux (Toolkit) and Redux Vuex for state management ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add client-side routing ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: Switch to Redux (Toolkit) and Redux Vuex for state management ([#62599f9](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/62599f9a9bad711b33aca8e97bc99e79e2bc37bf))
 - [x] Feature: Add a basic "store" with complete and delete functionality to todos [[1](#vues-reactive-system)] ([#cc42f14](https://github.com/cerebralideas/todomvc-client-vue/commit/cc42f14e8a30287b439a8b30fc6c76126fce1cd0))
 - [x] Initial: Get a super-basic todo list using `.vue` components working with plain Vue ([#fd23440](https://github.com/cerebralideas/todomvc-client-vue/commit/fd23440cdc833741d64dc2e134aaee15c5ec32ae))
 
@@ -23,13 +23,27 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 
 1. Install the dependencies found in the `package.json`
 2. Build the project
+3. Run the "simple" server
 
   ```
   npm install
   npm run build
+  npm run server
   ```
 
-3. Open `public/index.html` in your browser.
+4. Open `localhost:8000` in your browser
+
+## Development
+
+```
+npm install
+npm run dev
+
+# In a different terminal window
+npm run server
+```
+
+Open `localhost:8000` in your browser.
 
 ## A client SPA composed with Vue
 
@@ -40,6 +54,7 @@ Here's the full tech-stack that we've chosen to execute this idea:
 - **Redux**: State Management [[2](#why-not-vuex)]
 - **Immer**: build into Redux Toolkit, but deserves a shout-out
 - **Redux-Vuex**: Redux Vue bindings to provide seamless Redux integration into the Vue library.
+- **Page**: Page.js is a small, but powerful, express-like client-side router
 
 #### A bit on the top 2:
 
@@ -83,6 +98,20 @@ Here are some links you may find helpful:
 
 - [Official "Basic Tutorial"](https://redux-toolkit.js.org/tutorials/basic-tutorial)
 - [Official "Intermediate Tutorial"](https://redux-toolkit.js.org/tutorials/intermediate-tutorial)
+
+### Immer
+
+This is packaged within the Redux Toolkit library, and helps you work with immutable data in a much more convenient way. From [the official docs](https://immerjs.github.io/immer/docs/introduction):
+
+> Immer (German for: always) is a tiny package that allows you to work with immutable state in a more convenient way. It is based on the copy-on-write mechanism.
+>
+> The basic idea is that you will apply all your changes to a temporary draftState, which is a proxy of the currentState. Once all your mutations are completed, Immer will produce the nextState based on the mutations to the draft state. This means that you can interact with your data by simply modifying it while keeping all the benefits of immutable data.
+
+Immutable state is one of the most important and key factors with reducing errand bugs within apps that have complex data management. It's also a key principle in Functional Programming and Redux.
+
+### Page
+
+An express-like, client-side router built by the same team that maintains Express and Koa. It is very small, yet very powerful router that mimics routing from Express, so the API should feel familiar to those that have used Express or Express-based frameworks. You can read more about the library here: https://github.com/visionmedia/page.js.
 
 ## How it works
 
