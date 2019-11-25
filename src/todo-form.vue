@@ -7,7 +7,6 @@
 		},
 		methods: {
 			submitTodo: function (todo) {
-				console.log(todo);
 				this.$emit('submit-todo', todo);
 				this.newTodo = '';
 			}

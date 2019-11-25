@@ -1,18 +1,18 @@
 <script>
+	import { mapState, mapActions } from 'redux-vuex';
 	import todoForm from './todo-form.vue';
 	import todoItem from './todo-item.vue';
-	import todoFilters from './todo-filters.vue';
+	import toggleAll from './toggle-all.vue';
+	import todoFooter from './todo-footer.vue';
 
 	export default {
 		components: {
 			todoForm,
 			todoItem,
-			todoFilters
+			toggleAll,
+			todoFooter
 		},
-		props: {
-			todos: Array,
-			filter: String
-		},
+		data: mapState('todos', 'filter'),
 		computed: {
 			filteredTodos: function () {
 				switch (this.filter) {
@@ -28,21 +28,30 @@
 						return this.todos;
 				}
 			}
-		}
+		},
+		methods: mapActions(
+			'addTodo',
+			'completeTodo',
+			'deleteTodo'
+		),
 	};
 </script>
 
 <template>
 	<div>
-		<todo-form v-on="$listeners"></todo-form>
+		<todo-form
+			v-on:submit-todo="addTodo">
+		</todo-form>
+		<toggle-all></toggle-all>
 		<ul>
 			<todo-item
 				v-for="todo in filteredTodos"
 				v-bind:todo="todo"
-				v-on="$listeners"
+				v-on:complete-todo="completeTodo"
+				v-on:delete-todo="deleteTodo"
 				:key="todo.id">
 			</todo-item>
 		</ul>
-		<todo-filters></todo-filters>
+		<todo-footer></todo-footer>
 	</div>
 </template>

@@ -1,12 +1,18 @@
 import Vue from 'vue';
 import { configureStore } from '@reduxjs/toolkit';
-import { connect, mapState, mapActions } from 'redux-vuex';
+import { connect } from 'redux-vuex';
 
 import todosView from './todo-app.vue';
 import router from './router';
 import { todosActions, todosReducer } from './todos-slice';
 import { filtersActions, filtersReducer } from './filters-slice';
 
+/**
+ * @function configureStore - Sets up store configuration
+ * @param {Object} config
+ * @param {Object} config.reducer - alias to createStore's root reducer
+ *   The object constructed here reflects the shape of the state tree
+ */
 const store = configureStore({
 	reducer: {
 		todos: todosReducer,
@@ -14,32 +20,27 @@ const store = configureStore({
 	}
 });
 
+/**
+ * @function router - initializes up routing table
+ * @param {Object} store
+ * @param {Object} filtersActions
+ */
 router(store, filtersActions);
 
+/**
+ * @function connect - this binds Vue with Redux
+ */
 connect({
 	Vue,
 	store,
 	actions: todosActions
 });
 
+/**
+ * Initialize Vue application and bind to the root element
+ */
 new Vue({
-	components: {
-		todosView
-	},
-	data: mapState('todos', 'filter'),
+	components: { todosView },
 	el: '#app',
-	methods: mapActions(
-		'addTodo',
-		'completeTodo',
-		'deleteTodo'
-	),
-	template: `
-		<todos-view
-			v-bind:todos="todos"
-			v-bind:filter="filter"
-			v-on:submit-todo="addTodo"
-			v-on:complete-todo="completeTodo"
-			v-on:delete-todo="deleteTodo">
-		</todos-view>
-	`
+	template: '<todos-view></todos-view>'
 });

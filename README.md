@@ -13,8 +13,8 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 - [ ] Feature: complete the remainder of TodoMVC functionality
 - [ ] Feature: Add official TodoMVC look and feel through official packages
 - [ ] Feature: Add data persistence using LocalStorage
-- [ ] Feature: Add "complete all" and "clear completed" functionality
-- [x] Feature: Add client-side routing ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add todo count, "complete all" and "clear completed" functionality ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add client-side routing ([#9f27cff](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/9f27cff8d8cbb070ce9519d486c308fce1e84332))
 - [x] Tech: Switch to Redux (Toolkit) and Redux Vuex for state management ([#62599f9](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/62599f9a9bad711b33aca8e97bc99e79e2bc37bf))
 - [x] Feature: Add a basic "store" with complete and delete functionality to todos [[1](#vues-reactive-system)] ([#cc42f14](https://github.com/cerebralideas/todomvc-client-vue/commit/cc42f14e8a30287b439a8b30fc6c76126fce1cd0))
 - [x] Initial: Get a super-basic todo list using `.vue` components working with plain Vue ([#fd23440](https://github.com/cerebralideas/todomvc-client-vue/commit/fd23440cdc833741d64dc2e134aaee15c5ec32ae))
@@ -25,7 +25,7 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 2. Build the project
 3. Run the "simple" server
 
-  ```
+  ```sh
   npm install
   npm run build
   npm run server
@@ -35,7 +35,7 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 
 ## Development
 
-```
+```sh
 npm install
 npm run dev
 
@@ -56,7 +56,7 @@ Here's the full tech-stack that we've chosen to execute this idea:
 - **Redux-Vuex**: Redux Vue bindings to provide seamless Redux integration into the Vue library.
 - **Page**: Page.js is a small, but powerful, express-like client-side router
 
-#### A bit on the top 2:
+### A bit on each piece of the tech
 
 > Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
 >
@@ -73,7 +73,7 @@ Here are some links you may find helpful:
 - [Egghead Videos](https://egghead.io/courses/develop-basic-web-apps-with-vue-js)
 - [Enterprise Boilerplate](https://github.com/chrisvfritz/vue-enterprise-boilerplate)
 
-## Larning Redux (Toolkit)
+### Redux
 
 Basic Redux has some great documentation at their main site here: http://redux.js.org/. It's good to know the [core principles of Redux](https://redux.js.org/introduction/motivation). The important thing to know in this project is it's designed as a library/environment agnostic state management system. It's mostly seen with React, but it can be used with Vue as well (with a Vue binding library, that is).
 
