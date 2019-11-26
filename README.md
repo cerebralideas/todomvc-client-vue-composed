@@ -49,7 +49,7 @@ Open `localhost:8000` in your browser.
 
 Here's the full tech-stack that we've chosen to execute this idea:
 
-- **JavaScript**: transpiled using Babel
+- **ES6+ JavaScript**: transpiled using Babel
 - **Vue**: the view layer for handling rendering and binding UI events
 - **Redux**: State Management [[2](#why-not-vuex)]
 - **Immer**: build into Redux Toolkit, but deserves a shout-out
@@ -109,13 +109,19 @@ This is packaged within the Redux Toolkit library, and helps you work with immut
 
 Immutable state is one of the most important and key factors with reducing errand bugs within apps that have complex data management. It's also a key principle in Functional Programming and Redux.
 
+### Redux-Vuex
+
+By itself, Vue does not work natively with a non-Vuex state management library. Redux-Vuex fixes that by implementing the necessary bindings to allow Vue to react to Redux's state changes. There are two main libraries that offer such bindings:
+
+- [`redux-vuex`](https://github.com/alexander-heimbuch/redux-vuex)
+- [`vuejs-redux`](https://github.com/titouancreach/vuejs-redux)
+- [`redux-vue`](https://github.com/nadimtuhin/redux-vue)
+
+Redux-Vuex was chosen because I liked how it was similar to how Vuex is bound with Vue along with the simple, yet flexible `mapActions` and `mapState` utilities.
+
 ### Page
 
 An express-like, client-side router built by the same team that maintains Express and Koa. It is very small, yet very powerful router that mimics routing from Express, so the API should feel familiar to those that have used Express or Express-based frameworks. You can read more about the library here: https://github.com/visionmedia/page.js.
-
-## How it works
-
-Coming soon ...
 
 ## Footnotes
 
@@ -133,3 +139,5 @@ For a few reasons:
 Change is the only constant. Yet, why do we choose our libraries as if the choices we make today will never go stale? I strongly believe that X framework, whatever it is, will not always be the "best" framework for the project, so we should architect our applications to allow for as much flexibility to accommodate the inevitable change.
 
 Decoupling the core functional responsibilities of your app from each other is one way to mitigate the disruption change can have on your application. So, Redux provides the decoupling between functional concerns: view versus state management.
+
+A similar perspective was explained by Snipcart in this post about their Vue and Redux composition: [How We Use Redux & Redux-Observable with Vue](https://snipcart.com/blog/redux-vue).
