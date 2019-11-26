@@ -15,8 +15,8 @@ const todosSlice = createSlice({
 	reducers: {
 		addTodo: function (state, action) {
 			/**
-			 * We're just pushing to a copy of the state.
-			 * Immer takes that copy and applies the diff to the
+			 * We're just pushing a new todo to a *copy* of the state.
+			 * Don't worry, Immer takes that copy and applies the diff to the
 			 * real immutable data structure.
 			 */
 			state.push({
@@ -35,6 +35,9 @@ const todosSlice = createSlice({
 			todo.completed = !todo.completed;
 		},
 		deleteTodo: function (state, action) {
+			/**
+			 * You can also just return new state, like usual.
+			 */
 			return state.filter((item) => item.id !== action.payload);
 		},
 		toggleAll: function (state, action) {

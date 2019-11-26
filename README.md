@@ -12,8 +12,8 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 
 - [ ] Feature: complete the remainder of TodoMVC functionality
 - [ ] Feature: Add official TodoMVC look and feel through official packages
-- [ ] Feature: Add data persistence using LocalStorage
-- [x] Feature: Add todo count, "complete all" and "clear completed" functionality ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add data persistence using LocalStorage; reorganize files ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add todo count, "complete all" and "clear completed" functionality ([#1a179c2](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/1a179c29bd5a9a26d5c19678ad8db198d423e6f8))
 - [x] Feature: Add client-side routing ([#9f27cff](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/9f27cff8d8cbb070ce9519d486c308fce1e84332))
 - [x] Tech: Switch to Redux (Toolkit) and Redux Vuex for state management ([#62599f9](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/62599f9a9bad711b33aca8e97bc99e79e2bc37bf))
 - [x] Feature: Add a basic "store" with complete and delete functionality to todos [[1](#vues-reactive-system)] ([#cc42f14](https://github.com/cerebralideas/todomvc-client-vue/commit/cc42f14e8a30287b439a8b30fc6c76126fce1cd0))

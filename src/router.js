@@ -1,4 +1,4 @@
-import router from 'page';
+import page from 'page';
 
 /**
  * @function init - initializes the routes, requires a Redux store and actions
@@ -6,9 +6,11 @@ import router from 'page';
  * @param {Object} actions - Actions related to routing
  */
 export default function init(store, { showAll, showActive, showCompleted }) {
-	router('/', () => store.dispatch(showAll()));
-	router('/show_all', () => store.dispatch(showAll()));
-	router('/show_active', () => store.dispatch(showActive()));
-	router('/show_completed', () => store.dispatch(showCompleted()));
-	router();
+	const baseUrl = window.location.pathname;
+	page.base(`${baseUrl}#!`);
+	page('/', () => store.dispatch(showAll()));
+	page('/show_all', () => store.dispatch(showAll()));
+	page('/show_active', () => store.dispatch(showActive()));
+	page('/show_completed', () => store.dispatch(showCompleted()));
+	page();
 };

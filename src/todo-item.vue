@@ -1,16 +1,11 @@
 <script>
+	import { mapActions } from 'redux-vuex';
+
 	export default {
 		props: {
 			todo: Object
 		},
-		methods: {
-			completeTodo: function (todoId) {
-				this.$emit('complete-todo', todoId);
-			},
-			deleteTodo: function (todoId) {
-				this.$emit('delete-todo', todoId);
-			}
-		}
+		methods: mapActions('completeTodo', 'deleteTodo')
 	};
 </script>
 

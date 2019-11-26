@@ -1,6 +1,6 @@
 <script>
 	import { mapActions, mapState } from 'redux-vuex';
-	import todoFilters from './todo-filters.vue';
+	import todoFilters from './filters.vue';
 
 	export default {
 		components: { todoFilters },
