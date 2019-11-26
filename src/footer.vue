@@ -1,9 +1,13 @@
 <script>
 	import { mapActions, mapState } from 'redux-vuex';
-	import todoFilters from './filters.vue';
+	import clearCompleted from './bulk-actions/clear-completed.vue';
+	import todoFilters from './filters/filters.vue';
 
 	export default {
-		components: { todoFilters },
+		components: {
+			todoFilters,
+			clearCompleted
+		},
 		computed: {
 			todoCount: function () {
 				let count = this.todos.reduce((prev, curr) => {
@@ -17,22 +21,20 @@
 				}
 			}
 		},
-		data: mapState('todos'),
-		methods: mapActions('clearCompleted')
+		data: mapState('todos')
 	};
 </script>
 
 <template>
-	<div>
-		<p>
+	<footer class="footer">
+		<span class="todo-count">
 			<strong>{{ todoCount.num || 'No' }}</strong>
 			{{ todoCount.word }} left
-		</p>
+		</span>
 		<todo-filters></todo-filters>
-		<button
-			v-if="(todos.length - todoCount.num) > 0"
-			@click="clearCompleted()">
-			Clear completed
-		</button>
-	</div>
+		<clear-completed
+			v-bind:todos="todos"
+			v-bind:todoCount="todoCount">
+		</clear-completed>
+	</footer>
 </template>

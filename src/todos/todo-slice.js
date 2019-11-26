@@ -9,7 +9,7 @@ export let initialTodos = [
 	}
 ];
 
-const todosSlice = createSlice({
+const todoSlice = createSlice({
 	name: 'todos',
 	initialState: initialTodos,
 	reducers: {
@@ -55,5 +55,5 @@ const todosSlice = createSlice({
 	}
 });
 
-export const todosActions = todosSlice.actions;
-export const todosReducer = todosSlice.reducer;
+export const todoActions = todoSlice.actions;
+export const todoReducer = todoSlice.reducer;

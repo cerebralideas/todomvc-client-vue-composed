@@ -5,17 +5,18 @@ import todoApp from './app.vue';
 import router from './router';
 import stateMgmt from './state-mgmt';
 
+import 'todomvc-app-css/index.css';
+import './app.css';
+
 /**
  * Initialize the store and state persistence
  */
-const { store, filtersActions, todosActions } = stateMgmt();
+const { store, filterActions, todoActions } = stateMgmt();
 
 /**
- * initializes up routing table
- * @param {Object} store
- * @param {Object} filtersActions
+ * Initialize the routing table
  */
-router(store, filtersActions);
+router(store, filterActions);
 
 /**
  * Bind Redux using Redux-Vuex
@@ -23,7 +24,9 @@ router(store, filtersActions);
 connect({
 	Vue,
 	store,
-	actions: todosActions
+	actions: {
+		...todoActions
+	}
 });
 
 /**
@@ -31,6 +34,6 @@ connect({
  */
 new Vue({
 	components: { todoApp },
-	el: '#app',
+	el: '#root',
 	template: '<todo-app></todo-app>'
 });

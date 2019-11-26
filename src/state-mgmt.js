@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { todosActions, todosReducer } from './todo-slice';
-import { filtersActions, filtersReducer } from './filters-slice';
+import { todoActions, todoReducer } from './todos/todo-slice';
+import { filterActions, filterReducer } from './filters/filters-slice';
 
 /**
  * @function init - initializes the store along with state persistence.
@@ -32,8 +32,8 @@ export default function init() {
 	const store = configureStore({
 		preloadedState: previousState(),
 		reducer: {
-			todos: todosReducer,
-			filter: filtersReducer
+			todos: todoReducer,
+			filter: filterReducer
 		}
 	});
 
@@ -44,7 +44,7 @@ export default function init() {
 
 	return {
 		store,
-		filtersActions,
-		todosActions
+		filterActions,
+		todoActions
 	};
 }

@@ -1,9 +1,13 @@
 <script>
 	import { mapState } from 'redux-vuex';
 	import todoItem from './todo-item.vue';
+	import toggleAll from '../bulk-actions/toggle-all.vue';
 
 	export default {
-		components: { todoItem },
+		components: {
+			todoItem,
+			toggleAll
+		},
 		computed: {
 			filteredTodos: function () {
 				switch (this.filter) {
@@ -25,11 +29,14 @@
 </script>
 
 <template>
-	<ul>
-		<todo-item
-			v-for="todo in filteredTodos"
-			v-bind:todo="todo"
-			:key="todo.id">
-		</todo-item>
-	</ul>
+	<section class="main">
+		<toggle-all></toggle-all>
+		<ul class="todo-list">
+			<todo-item
+				v-for="todo in filteredTodos"
+				v-bind:todo="todo"
+				:key="todo.id">
+			</todo-item>
+		</ul>
+	</section>
 </template>

@@ -6,7 +6,13 @@ import page from 'page';
  * @param {Object} actions - Actions related to routing
  */
 export default function init(store, { showAll, showActive, showCompleted }) {
+	/**
+	 * @string - prevents the breaking of the Github page
+	 */
 	const baseUrl = window.location.pathname;
+	/**
+	 * @method base - Set the "hashbang" for client-only routing
+	 */
 	page.base(`${baseUrl}#!`);
 	page('/', () => store.dispatch(showAll()));
 	page('/show_all', () => store.dispatch(showAll()));

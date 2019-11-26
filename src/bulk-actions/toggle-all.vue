@@ -7,10 +7,14 @@
 </script>
 
 <template>
-	<label for="toggle-all">
-		<input type="checkbox"
+	<div>
+		<input
+			type="checkbox"
 			id="toggle-all"
+			class="toggle-all"
 			@change="toggleAll()" />
-		Toggle all
-	</label>
+		<label for="toggle-all">
+			<span class="a11y-text">Toggle all</span>
+		</label>
+	</div>
 </template>
