@@ -1,20 +1,21 @@
 <script>
-	import { mapActions } from 'redux-vuex';
+import { mapActions } from 'redux-vuex';
 
-	export default {
-		props: {
-			todos: Array,
-			todoCount: Object
-		},
-		methods: mapActions('clearCompleted')
-	}
+export default {
+    props: {
+        todos: Array,
+        todoCount: Object
+    },
+    methods: mapActions('clearCompleted')
+};
 </script>
 
 <template>
-	<button
-		class="clear-completed"
-		v-if="(todos.length - todoCount.num) > 0"
-		@click="clearCompleted()">
-		Clear completed
-	</button>
+    <button
+        v-if="todos.length - todoCount.num > 0"
+        class="clear-completed"
+        @click="clearCompleted()"
+    >
+        Clear completed
+    </button>
 </template>

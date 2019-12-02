@@ -11,7 +11,8 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 ## Progress
 
 - [ ] Feature: complete the remainder of TodoMVC functionality
-- [x] Tech: replace page.js with router5 ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: add Eslint, Prettier and Husky ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: replace page.js with router5 ([#7a3a960](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/7a3a9605305b6e8731819f9c14a736af6eead517))
 - [x] Feature: Add official TodoMVC look and feel through official packages ([#65e5f93](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/65e5f93d4489386afd5e714876e210f89c0836ba))
 - [x] Feature: Add data persistence using LocalStorage; reorganize files ([#787b2e5](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/787b2e5dd769b7186f95d9607315424601cce571))
 - [x] Feature: Add todo count, "complete all" and "clear completed" functionality ([#1a179c2](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/1a179c29bd5a9a26d5c19678ad8db198d423e6f8))

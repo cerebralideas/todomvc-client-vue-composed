@@ -22,18 +22,18 @@ router(store, filterActions);
  * Bind Redux using Redux-Vuex
  */
 connect({
-	Vue,
-	store,
-	actions: {
-		...todoActions
-	}
+    Vue,
+    store,
+    actions: {
+        ...todoActions
+    }
 });
 
 /**
  * Initialize Vue application and bind to the root element
  */
 new Vue({
-	components: { todoApp },
-	el: '#root',
-	template: '<todo-app></todo-app>'
+    el: '#root',
+    components: { todoApp },
+    template: '<todo-app></todo-app>'
 });

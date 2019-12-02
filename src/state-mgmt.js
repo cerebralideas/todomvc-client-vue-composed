@@ -7,44 +7,44 @@ import { filterActions, filterReducer } from './filters/filters-slice';
  * Uses LocalStorage for data serialization.
  */
 export default function init() {
-	/**
-	 * @function persistentState
-	 */
-	const previousState = () => {
-		let state;
-		const stateString = localStorage.getItem('state');
-		if (stateString) {
-			try {
-				state = JSON.parse(stateString);
-			} catch (err) {
-				console.log(`JSON parse error: ${err}`);
-			}
-		}
-		return state;
-	};
+    /**
+     * @function persistentState
+     */
+    const previousState = () => {
+        let state;
+        const stateString = localStorage.getItem('state');
+        if (stateString) {
+            try {
+                state = JSON.parse(stateString);
+            } catch (err) {
+                console.log(`JSON parse error: ${err}`);
+            }
+        }
+        return state;
+    };
 
-	/**
-	 * @function configureStore - Sets up store configuration
-	 * @param {Object} config
-	 * @param {Object} config.reducer - alias to createStore's root reducer
-	 *   The object constructed here reflects the shape of the state tree
-	 */
-	const store = configureStore({
-		preloadedState: previousState(),
-		reducer: {
-			todos: todoReducer,
-			filter: filterReducer
-		}
-	});
+    /**
+     * @function configureStore - Sets up store configuration
+     * @param {Object} config
+     * @param {Object} config.reducer - alias to createStore's root reducer
+     *   The object constructed here reflects the shape of the state tree
+     */
+    const store = configureStore({
+        preloadedState: previousState(),
+        reducer: {
+            todos: todoReducer,
+            filter: filterReducer
+        }
+    });
 
-	store.subscribe(function () {
-		const state = store.getState();
-		localStorage.setItem('state', JSON.stringify(state));
-	});
+    store.subscribe(function() {
+        const state = store.getState();
+        localStorage.setItem('state', JSON.stringify(state));
+    });
 
-	return {
-		store,
-		filterActions,
-		todoActions
-	};
+    return {
+        store,
+        filterActions,
+        todoActions
+    };
 }
