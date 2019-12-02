@@ -11,24 +11,25 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 ## Progress
 
 - [ ] Feature: complete the remainder of TodoMVC functionality
-- [x] Feature: Add official TodoMVC look and feel through official packages ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: replace page.js with router5 ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add official TodoMVC look and feel through official packages ([#65e5f93](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/65e5f93d4489386afd5e714876e210f89c0836ba))
 - [x] Feature: Add data persistence using LocalStorage; reorganize files ([#787b2e5](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/787b2e5dd769b7186f95d9607315424601cce571))
 - [x] Feature: Add todo count, "complete all" and "clear completed" functionality ([#1a179c2](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/1a179c29bd5a9a26d5c19678ad8db198d423e6f8))
 - [x] Feature: Add client-side routing ([#9f27cff](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/9f27cff8d8cbb070ce9519d486c308fce1e84332))
 - [x] Tech: Switch to Redux (Toolkit) and Redux Vuex for state management ([#62599f9](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/62599f9a9bad711b33aca8e97bc99e79e2bc37bf))
-- [x] Feature: Add a basic "store" with complete and delete functionality to todos [[1](#vues-reactive-system)] ([#cc42f14](https://github.com/cerebralideas/todomvc-client-vue/commit/cc42f14e8a30287b439a8b30fc6c76126fce1cd0))
+- [x] Feature: Add a basic "store" with complete and delete functionality to todos [[1](#1-vues-reactive-system)] ([#cc42f14](https://github.com/cerebralideas/todomvc-client-vue/commit/cc42f14e8a30287b439a8b30fc6c76126fce1cd0))
 - [x] Initial: Get a super-basic todo list using `.vue` components working with plain Vue ([#fd23440](https://github.com/cerebralideas/todomvc-client-vue/commit/fd23440cdc833741d64dc2e134aaee15c5ec32ae))
 
 ## Up and Running
 
 1. Install the dependencies found in the `package.json`
 2. Build the project
-3. Run the "simple" server
+3. Start the python "simple server"
 
   ```sh
   npm install
   npm run build
-  npm run server
+  npm run start
   ```
 
 4. Open `localhost:8000` in your browser
@@ -40,7 +41,7 @@ npm install
 npm run dev
 
 # In a different terminal window
-npm run server
+npm run start
 ```
 
 Open `localhost:8000` in your browser.
@@ -51,20 +52,29 @@ Here's the full tech-stack that we've chosen to execute this idea:
 
 - **ES6+ JavaScript**: transpiled using Babel
 - **Vue**: the view layer for handling rendering and binding UI events
-- **Redux**: State Management [[2](#why-not-vuex)]
-- **Immer**: build into Redux Toolkit, but deserves a shout-out
+- **Redux**: framework/library agnostic State Management [[2](#2-why-not-vuex)]
+- **Redux-Toolkit**: a conventions-based Redux package for configuration and setup
+- **Immer**: built into Redux-Toolkit, but deserves a shout-out
 - **Redux-Vuex**: Redux Vue bindings to provide seamless Redux integration into the Vue library.
-- **Page**: Page.js is a small, but powerful, express-like client-side router
+- **Router5**: Router5 is a framework and view library agnostic router [3](#3-why-not-vue-router)
 
-### A bit on each piece of the tech
+## Learning the stack
+
+### Vue
 
 > Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
->
-> _[Vue.js Introduction](https://vuejs.org/v2/guide/)_
 
-## Learning Vue
+The [Vue website](http://vuejs.org) is a great resource for getting started. The initial learning from Vue is quite easy. If you like building everything yourself, don't get caught on [the different builds of Vue](https://vuejs.org/v2/guide/installation.html#Explanation-of-Different-Builds). Some have the compiler in them, and some don't.
 
-The [Vue website](http://vuejs.org) is a great resource for getting started.
+If you are not "precompiling" your templates (like me while learning), you will need the "full" version. I had to add the following to the Webpack config (and make sure to have `development` as the mode):
+
+```js
+resolve: {
+  alias: {
+    'vue$': 'vue/dist/vue.esm.js'
+  }
+}
+```
 
 Here are some links you may find helpful:
 
@@ -119,17 +129,25 @@ By itself, Vue does not work natively with a non-Vuex state management library. 
 
 Redux-Vuex was chosen because I liked how it was similar to how Vuex is bound with Vue along with the simple, yet flexible `mapActions` and `mapState` utilities.
 
-### Page
+### Router5
 
-An express-like, client-side router built by the same team that maintains Express and Koa. It is very small, yet very powerful router that mimics routing from Express, so the API should feel familiar to those that have used Express or Express-based frameworks. You can read more about the library here: https://github.com/visionmedia/page.js.
+Router5 is not a typical router. It doesn't have a relationship with "views" or "pages" to render. It, instead, outputs a state representation of the route (both previous route and current). This helps decouple routing from the rendering layer, and creates a rich understanding of the where the user is going, and where from where she came. This is critical in creating transitional or animating the result of routing.
+
+[Page.js]() has a much smaller footprint and is bulletproof. It can essentially do the same thing, but it requires quite a bit of additional code. Router5 has this very interesting concept built right in. At PayPal, we used Page.js, to essentially created a router that converted a previous and current route state representation (params and path partials) that was managed in Redux.
+
+From Router5:
+
+> "Traditional" routing has been heavily influenced by server-side routing, which is stateless, while client-side routing is stateful. For more in-depth description of router5, look at [Understanding Router5](https://router5.js.org/introduction/core-concepts).
+
+- [Official docs](https://router5.js.org)
 
 ## Footnotes
 
-### Vue's reactive system
+### 1. Vue's reactive system
 
 Vue's "reactivity" for state management doesn't allow common immutable data patterns. One example is any operation on arrays and objects that result in a new assignment, rather than property mutation. For example, `todos[i] = updatedTodo;`.
 
-### Why not Vuex?
+### 2. Why not Vuex?
 
 For a few reasons:
 
@@ -141,3 +159,9 @@ Change is the only constant. Yet, why do we choose our libraries as if the choic
 Decoupling the core functional responsibilities of your app from each other is one way to mitigate the disruption change can have on your application. So, Redux provides the decoupling between functional concerns: view versus state management.
 
 A similar perspective was explained by Snipcart in this post about their Vue and Redux composition: [How We Use Redux & Redux-Observable with Vue](https://snipcart.com/blog/redux-vue).
+
+### 3. Why not Vue-Router
+
+For many of the same [reasons I didn't choose Vuex](#2-why-not-vuex). Routing often times starts simple, but over time and change in requirements, your routing table and all the transitions between states in flows can become very complicated to manage. By choosing an agnostic routing library, you can ensure it has the appropriate capability to handle your app's growth.
+
+Once your routing logic becomes mature, you often have a lot of code supporting your app's functionality. If your view library needs to be changed, and your router is dependent on it, throwing away all of your routing code can be a large waste. So, by decoupling your routing from your view, you are able to evolve to changes easier, future proofing your code.

@@ -1,4 +1,5 @@
-import page from 'page';
+import createRouter from 'router5';
+import browserPlugin from 'router5-plugin-browser';
 
 /**
  * @function init - initializes the routes, requires a Redux store and actions
@@ -6,17 +7,25 @@ import page from 'page';
  * @param {Object} actions - Actions related to routing
  */
 export default function init(store, { showAll, showActive, showCompleted }) {
-	/**
-	 * @string - prevents the breaking of the Github page
-	 */
-	const baseUrl = window.location.pathname;
-	/**
-	 * @method base - Set the "hashbang" for client-only routing
-	 */
-	page.base(`${baseUrl}#!`);
-	page('/', () => store.dispatch(showAll()));
-	page('/show_all', () => store.dispatch(showAll()));
-	page('/show_active', () => store.dispatch(showActive()));
-	page('/show_completed', () => store.dispatch(showCompleted()));
-	page();
+
+	const router = createRouter([
+		{ name: 'all', path: '/show_all' },
+		{ name: 'active', path: '/show_active' },
+		{ name: 'completed', path: '/show_completed' }
+	]);
+	router.usePlugin(browserPlugin({ useHash: true }));
+	router.start();
+	router.subscribe(({ route }) => {
+		switch (route.name) {
+			case 'all':
+				store.dispatch(showAll());
+				break;
+			case 'active':
+				store.dispatch(showActive());
+				break;
+			case 'completed':
+				store.dispatch(showCompleted());
+				break;
+		}
+	});
 };

@@ -23,6 +23,8 @@
     "@reduxjs/toolkit": "^1.0.4",
     "page": "^1.11.5",
     "redux-vuex": "^0.3.2",
+    "router5": "^7.0.2",
+    "router5-plugin-browser": "^7.0.2",
     "todomvc-app-css": "~2.2.0",
     "uuid": "^3.3.3",
     "vue": "^2.6.10"
