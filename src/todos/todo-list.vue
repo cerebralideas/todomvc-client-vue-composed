@@ -8,9 +8,7 @@ export default {
         todoItem,
         toggleAll
     },
-    data: function() {
-        return mapState('todos', 'filter');
-    },
+    data: mapState('todos', 'filter'),
     computed: {
         filteredTodos: function() {
             switch (this.filter) {

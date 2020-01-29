@@ -18,7 +18,6 @@ export default {
 
 <template>
     <form name="todoForm" @submit.prevent="submitTodo(newTodo)">
-        >
         <label class="a11y-text" for="newTodo">
             New Todo
         </label>

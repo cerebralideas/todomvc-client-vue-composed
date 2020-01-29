@@ -4,14 +4,20 @@
 
 Like many Web applications, it's quite common to choose a library or framework (Vue.js in this instance) and base all architectural decisions around that library or framework. The danger of this is that your application becomes dangerously coupled to that choice.
 
-In most Vue applications, you see Vuex for state management, Vue Router for routing, Vue Axios for AJAX ... by the end of the project, every functional concern of your app is based on Vue. This makes the initial part of the application development process fast, but it can severely limit your ability to evolve the application to change over time.
+In most Vue applications, you see VueX for state management, Vue Router for routing, Vue Axios for AJAX ... by the end of the project, every functional concern of your app is based on Vue. This makes the initial part of the application development process fast, but it can severely limit your ability to evolve the application to change over time.
 
-What do you do if the next "best" library comes out, and it's incompatible with Vue? That's why I'm experimenting with architectural composition. Each functional concern is solved with an agnostic, composable library. I call this a heavily-composed application architecture.
+What do you do if the next "best" library comes out, and it's incompatible with Vue? That's why I'm experimenting with architectural composition. Each functional concern is solved with an agnostic, composable library. I call this a heavily-composed, application architecture.
 
 ## Progress
 
+- [ ] Feature: Complete full testing suite
+- [ ] Feature: Add Vue testing
+- [ ] Feature: Add `vue-test-utils`
+- [ ] Feature: Add server interaction backed by Mirage.js
+- [ ] Tech: Add Mirage.js for mocking
 - [ ] Feature: complete the remainder of TodoMVC functionality
-- [x] Tech: add Eslint, Prettier and Husky ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: Add Jest and Playwright for testing along with example unit and E2E tests ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: add Eslint, Prettier and Husky ([#ad83ce6](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/ad83ce6dbbf991aab7f1de22929d5fb47fbf77c4))
 - [x] Tech: replace page.js with router5 ([#7a3a960](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/7a3a9605305b6e8731819f9c14a736af6eead517))
 - [x] Feature: Add official TodoMVC look and feel through official packages ([#65e5f93](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/65e5f93d4489386afd5e714876e210f89c0836ba))
 - [x] Feature: Add data persistence using LocalStorage; reorganize files ([#787b2e5](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/787b2e5dd769b7186f95d9607315424601cce571))

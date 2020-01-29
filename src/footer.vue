@@ -23,9 +23,7 @@ export default {
             };
         }
     },
-    data: function() {
-        return mapState('todos');
-    }
+    data: mapState('todos')
 };
 </script>
 
