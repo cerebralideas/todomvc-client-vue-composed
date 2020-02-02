@@ -1,8 +1,10 @@
 <script>
-import { mapActions } from 'redux-vuex';
+import { sendBulkAction } from './bulk.events';
 
 export default {
-    methods: mapActions('toggleAll')
+    methods: {
+        toggleAll: () => sendBulkAction('completeAll')
+    }
 };
 </script>
 

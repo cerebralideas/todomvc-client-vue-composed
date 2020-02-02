@@ -1,5 +1,5 @@
 <script>
-import { mapActions } from 'redux-vuex';
+import { sendNewTodo } from './todo.events';
 
 export default {
     data: function() {
@@ -7,12 +7,16 @@ export default {
             newTodo: ''
         };
     },
-    methods: mapActions({
-        submitTodo: function({ dispatch, actions }, newTodo) {
-            dispatch(actions.addTodo(newTodo));
-            this.newTodo = '';
+    methods: {
+        submitTodo: async function(newTodo) {
+            if (newTodo.trim()) {
+                const message = await sendNewTodo(newTodo);
+                if (message === 'success') {
+                    this.newTodo = '';
+                }
+            }
         }
-    })
+    }
 };
 </script>
 

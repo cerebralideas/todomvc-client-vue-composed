@@ -13,10 +13,11 @@ What do you do if the next "best" library comes out, and it's incompatible with 
 - [ ] Feature: Complete full testing suite
 - [ ] Feature: Add Vue testing
 - [ ] Feature: Add `vue-test-utils`
+- [ ] Feature: complete the remainder of TodoMVC functionality
 - [ ] Feature: Add server interaction backed by Mirage.js
 - [ ] Tech: Add Mirage.js for mocking
-- [ ] Feature: complete the remainder of TodoMVC functionality
-- [x] Tech: Add Jest and Playwright for testing along with example unit and E2E tests ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Feature: Add remote data persistence with RESTful service ([HEAD](https://github.com/cerebralideas/todomvc-client-vue))
+- [x] Tech: Add Jest and Playwright for testing along with example unit and E2E tests ([#124eb5a](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/124eb5af25ef2db952fec759cf67b1985fc6ebaf))
 - [x] Tech: add Eslint, Prettier and Husky ([#ad83ce6](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/ad83ce6dbbf991aab7f1de22929d5fb47fbf77c4))
 - [x] Tech: replace page.js with router5 ([#7a3a960](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/7a3a9605305b6e8731819f9c14a736af6eead517))
 - [x] Feature: Add official TodoMVC look and feel through official packages ([#65e5f93](https://github.com/cerebralideas/todomvc-client-vue-composed/commit/65e5f93d4489386afd5e714876e210f89c0836ba))

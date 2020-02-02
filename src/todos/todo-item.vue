@@ -1,9 +1,12 @@
 <script>
-import { mapActions } from 'redux-vuex';
-
+import { sendTodoEdit } from './todo.events';
 export default {
     props: { todo: Object },
-    methods: mapActions('completeTodo', 'deleteTodo')
+    methods: {
+        modifyTodo: function(editType, id) {
+            sendTodoEdit(editType, id);
+        }
+    }
 };
 </script>
 
@@ -15,12 +18,12 @@ export default {
                 class="toggle"
                 type="checkbox"
                 :checked="todo.completed"
-                @change="completeTodo(todo.id)"
+                @change="modifyTodo('complete', todo.id)"
             />
             <label :for="todo.id">
                 {{ todo.title }}
             </label>
-            <button class="destroy" @click="deleteTodo(todo.id)">
+            <button class="destroy" @click="modifyTodo('delete', todo.id)">
                 <span class="a11y-text">Delete todo</span>
             </button>
         </div>

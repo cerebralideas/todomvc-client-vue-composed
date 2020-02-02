@@ -1,12 +1,14 @@
 <script>
-import { mapActions } from 'redux-vuex';
+import { sendBulkAction } from './bulk.events';
 
 export default {
     props: {
         todos: Array,
         todoCount: Object
     },
-    methods: mapActions('clearCompleted')
+    methods: {
+        clearCompleted: () => sendBulkAction('clearCompleted')
+    }
 };
 </script>
 

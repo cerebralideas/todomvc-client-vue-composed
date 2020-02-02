@@ -19,7 +19,7 @@ const todoSlice = createSlice({
              * Don't worry, Immer takes that copy and applies the diff to the
              * real immutable data structure.
              */
-            state.push({
+            state.unshift({
                 title: action.payload,
                 id: uuid(),
                 completed: false

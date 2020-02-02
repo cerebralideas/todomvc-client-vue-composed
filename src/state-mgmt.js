@@ -3,22 +3,29 @@ import { todoActions, todoReducer } from './todos/todo-slice';
 import { filterActions, filterReducer } from './filters/filters-slice';
 
 /**
+ * Expose the store globally, so that it can be imported
+ */
+export let store;
+export let actions = {
+    filterActions,
+    todoActions
+};
+
+/**
  * @function init - initializes the store along with state persistence.
  * Uses LocalStorage for data serialization.
  */
-export default function init() {
+export async function initStore() {
     /**
      * @function persistentState
      */
-    const previousState = () => {
+    const previousState = async () => {
         let state;
-        const stateString = localStorage.getItem('state');
-        if (stateString) {
-            try {
-                state = JSON.parse(stateString);
-            } catch (err) {
-                console.log(`JSON parse error: ${err}`);
-            }
+        const response = await fetch('http://localhost:3000');
+        try {
+            state = response.json();
+        } catch (err) {
+            console.log(`JSON parse error: ${err}`);
         }
         return state;
     };
@@ -29,8 +36,8 @@ export default function init() {
      * @param {Object} config.reducer - alias to createStore's root reducer
      *   The object constructed here reflects the shape of the state tree
      */
-    const store = configureStore({
-        preloadedState: previousState(),
+    store = configureStore({
+        preloadedState: await previousState(),
         reducer: {
             todos: todoReducer,
             filter: filterReducer
