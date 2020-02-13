@@ -16,6 +16,7 @@ export async function sendNewTodo(newTodo) {
             })
         });
         if (response.ok) {
+            const newTodo = await response.json();
             store.dispatch(todoActions.addTodo(newTodo));
             return 'success';
         } else {
@@ -30,16 +31,14 @@ export async function sendNewTodo(newTodo) {
 
 export async function sendTodoEdit(editType, id) {
     const type = editType === 'complete' ? 'COMPLETE_TODO' : 'DELETE_TODO';
+    const method = editType === 'complete' ? 'POST' : 'DELETE';
     try {
         const response = await fetch(`${serviceUrl}/todos/${id}?type=${type}`, {
-            method: 'POST',
+            method,
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: id
-            })
+            }
         });
         if (response.ok) {
             const action =

@@ -7,7 +7,8 @@
     "build": "webpack",
     "dev": "webpack -w",
     "lint": "eslint 'src/**' --fix",
-    "start": "cd public && python -m SimpleHTTPServer 8000",
+    "start": "cd public/mock && python -m SimpleHTTPServer 8000",
+    "start:live": "cd public/live && python -m SimpleHTTPServer 8000",
     "test": "jest",
     "test:unit": "jest src/",
     "test:e2e": "jest tests/"

@@ -1,17 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import uuid from 'uuid/v4';
-
-export let initialTodos = [
-    {
-        id: 'f9c94d35-a6d6-4301-9596-76a5b9e2a484',
-        title: 'Hello, World!',
-        completed: 'true'
-    }
-];
 
 const todoSlice = createSlice({
     name: 'todos',
-    initialState: initialTodos,
+    initialState: [],
     reducers: {
         addTodo: function(state, action) {
             /**
@@ -19,26 +10,22 @@ const todoSlice = createSlice({
              * Don't worry, Immer takes that copy and applies the diff to the
              * real immutable data structure.
              */
-            state.unshift({
-                title: action.payload,
-                id: uuid(),
-                completed: false
-            });
+            state.unshift(action.payload);
         },
         completeTodo: function(state, action) {
             /**
-             * Grab the completed todo and mutate that item.
+             * Grab the completed todo and mutate that todo.
              * Immer allows for this kind of mutation, even though
              * it uses immutable data structures under the hood.
              */
-            let todo = state.find((item) => action.payload === item.id);
+            let todo = state.find((todo) => action.payload === todo._id);
             todo.completed = !todo.completed;
         },
         deleteTodo: function(state, action) {
             /**
              * You can also just return new state, like usual.
              */
-            return state.filter((item) => item.id !== action.payload);
+            return state.filter((todo) => todo._id !== action.payload);
         },
         toggleAll: function(state) {
             const areAllMarked = state.every((todo) => todo.completed);
@@ -49,7 +36,7 @@ const todoSlice = createSlice({
             );
         },
         clearCompleted: function(state) {
-            return state.filter((item) => !item.completed);
+            return state.filter((todo) => !todo.completed);
         }
     }
 });

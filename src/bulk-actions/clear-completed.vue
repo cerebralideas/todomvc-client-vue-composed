@@ -1,5 +1,5 @@
 <script>
-import { sendBulkAction } from './bulk.events';
+import { sendBulkClear } from './bulk.events';
 
 export default {
     props: {
@@ -7,7 +7,7 @@ export default {
         todoCount: Object
     },
     methods: {
-        clearCompleted: () => sendBulkAction('clearCompleted')
+        clearCompleted: () => sendBulkClear()
     }
 };
 </script>

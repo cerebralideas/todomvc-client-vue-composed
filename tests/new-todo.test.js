@@ -12,11 +12,11 @@ test('Load app and add new todo', async (done) => {
     await newTodoInput.press('Enter');
 
     // Grab all .view elements which represent todos
-    const allTodos = await page.$$('.view');
+    const newTodo = await page.waitForSelector('.view');
 
     // Grab the last todo in the list (newest)
-    const newTodo = await allTodos[0].$('label');
-    const newTodoLabel = await newTodo.evaluate((node) => node.innerText);
+    const newTodoLabelEl = await newTodo.$('label');
+    const newTodoLabel = await newTodoLabelEl.evaluate((node) => node.innerText);
     expect(newTodoLabel).toBe('My new todo item!');
 
     // Close everything out

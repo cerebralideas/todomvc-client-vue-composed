@@ -17,7 +17,7 @@ export let actions = {
  */
 export async function initStore() {
     /**
-     * @function persistentState
+     * @function previousState
      */
     const previousState = async () => {
         let state;
@@ -31,22 +31,36 @@ export async function initStore() {
     };
 
     /**
+     * @function reloadOnPath
+     */
+    const reloadOnPath = () => {
+        switch (true) {
+            case location.hash.includes('show_all'):
+                return 'show_all';
+            case location.hash.includes('show_active'):
+                return 'show_active';
+            case location.hash.includes('show_completed'):
+                return 'show_completed';
+            default:
+                return '';
+        }
+    };
+
+    /**
      * @function configureStore - Sets up store configuration
      * @param {Object} config
      * @param {Object} config.reducer - alias to createStore's root reducer
      *   The object constructed here reflects the shape of the state tree
      */
     store = configureStore({
-        preloadedState: await previousState(),
+        preloadedState: {
+            filter: reloadOnPath(),
+            todos: await previousState()
+        },
         reducer: {
-            todos: todoReducer,
-            filter: filterReducer
+            filter: filterReducer,
+            todos: todoReducer
         }
-    });
-
-    store.subscribe(function() {
-        const state = store.getState();
-        localStorage.setItem('state', JSON.stringify(state));
     });
 
     return {

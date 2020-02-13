@@ -30,7 +30,7 @@ export default {
     <section class="main">
         <toggle-all />
         <ul class="todo-list">
-            <todo-item v-for="todo in filteredTodos" :key="todo.id" :todo="todo" />
+            <todo-item v-for="todo in filteredTodos" :key="todo._id" :todo="todo" />
         </ul>
     </section>
 </template>

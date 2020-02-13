@@ -1,9 +1,9 @@
 <script>
-import { sendBulkAction } from './bulk.events';
+import { sendBulkComplete } from './bulk.events';
 
 export default {
     methods: {
-        toggleAll: () => sendBulkAction('completeAll')
+        toggleAll: () => sendBulkComplete()
     }
 };
 </script>
